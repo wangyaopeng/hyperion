@@ -48,3 +48,14 @@
     holder.getResponse().get() // thread wait until request be executed completely
     holder.getResponse().get(long timeout, TimeUnit timeUnit)// thread wait period of time until request be executed completely, if time out, throw exception TimeOutException
     ```
+    or register callback listener before executing request
+    ```
+    holder.getResponse().addListener(future -> {
+        try {
+            System.out.println(future.get());
+        } catch (Throwable th) {
+            System.out.println(th.getMessage());
+        }
+    });
+    pipeline.request(holder);
+    ```

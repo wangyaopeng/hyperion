@@ -57,8 +57,14 @@ public class Application {
             try {
                 OrderRequest request = new OrderRequest().setAmount(index * 15);
                 ContextHolder<OrderRequest, OrderResponse> holder = new ContextHolder<>(request);
+                holder.getResponse().addListener(future -> {
+                    try {
+                        System.out.println(future.get());
+                    } catch (Throwable th) {
+                        System.out.println(th.getMessage());
+                    }
+                });
                 pipeline.request(holder);
-                System.out.println(holder.getResponse().get());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
