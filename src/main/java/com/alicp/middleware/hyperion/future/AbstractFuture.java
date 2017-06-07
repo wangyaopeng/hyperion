@@ -15,7 +15,7 @@ import java.util.concurrent.*;
  * </ul>
  * </pre>
  *
- * @author lixiaohui
+ * @author guoxing
  *
  * @param <V>
  *            异步执行结果的类型
